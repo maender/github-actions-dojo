@@ -1,3 +1,4 @@
 # ci-app
 
-[![GitHub Super-Linter](https://github.com/maender/github-actions-dojo/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+![.github/workflows/test.yml](https://github.com/maender/github-actions-dojo/workflows/.github/workflows/test.yml/badge.svg)
+![.github/workflows/test.yml](https://raw.githubusercontent.com/maender/github-actions-dojo/badges/master/test-badge.svg)
