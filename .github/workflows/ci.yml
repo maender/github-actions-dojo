@@ -5,17 +5,43 @@ on:
   push:
 
 jobs:
-  Lint:
+  lint-all:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Running linter"
+      - uses: actions/checkout@v3
       - uses: github/super-linter@v4
 
   Static-code-analysis-tests:
     runs-on: "ubuntu-latest"
     name: Static code analysis tests
     needs:
-      - Lint
+      - lint-all
     steps:
-      - run: echo "Runing static code analysis tests"
       - uses: actions/setup-python@v2g
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+      - run: python3 tests/test_bats.sh
+
+  Unit-tests:
+    runs-on: "ubuntu-latest"
+    name: Unit tests
+    needs:
+      - Static-code-analysis-tests
+    steps:
+      - run: echo "unit tests"
+
+  Build:
+    runs-on: "ubuntu-latest"
+    needs: Unit-tests
+    steps:
+      - run: echo "build"
+
+  Integ-tests:
+    runs-on: "ubuntu-latest"
+    name: Integ tests
+    needs: Build
+    steps:
+      - run: echo "Integ tests"
