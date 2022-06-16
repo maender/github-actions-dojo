@@ -9,11 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Running linter"
-      - uses: https://github.com/marketplace/actions/super-linter
+      - uses: github/super-linter@v4
 
-  Static_code_analysis_tests:
+  Static-code-analysis-tests:
     runs-on: "ubuntu-latest"
+    name: Static code analysis tests
     needs:
       - Lint
     steps:
       - run: echo "Runing static code analysis tests"
+      - uses: actions/setup-python@v2g
